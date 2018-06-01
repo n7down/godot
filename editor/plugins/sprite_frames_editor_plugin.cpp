@@ -834,15 +834,12 @@ void SpriteFramesEditorPlugin::make_visible(bool p_visible) {
 
 	if (p_visible) {
 		button->show();
-		editor->make_bottom_panel_item_visible(frames_editor);
-		//frames_editor->set_process(true);
+		if(button->is_pressed())
+			frames_editor->show();
 	} else {
-
 		button->hide();
-		if (frames_editor->is_visible_in_tree())
-			editor->hide_bottom_panel();
-
-		//frames_editor->set_process(false);
+		frames_editor->edit(NULL);
+		frames_editor->hide();
 	}
 }
 
@@ -852,6 +849,7 @@ SpriteFramesEditorPlugin::SpriteFramesEditorPlugin(EditorNode *p_node) {
 	frames_editor = memnew(SpriteFramesEditor);
 	frames_editor->set_custom_minimum_size(Size2(0, 300) * EDSCALE);
 	button = editor->add_bottom_panel_item(TTR("SpriteFrames"), frames_editor);
+	frames_editor->hide();
 	button->hide();
 }
 
