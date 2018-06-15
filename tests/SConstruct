@@ -1,0 +1,5 @@
+env = Environment(CPPPATH=['/usr/local/include/gtest', '../core', '../core/math', '../platform/osx', '../rhirdparty', '../thirdparty/misc'])
+common_libs = ['gtest_main', 'gtest']
+env.Append(LIBS = common_libs)
+
+env.Program(source=['vector3_unittest.cc', '../core/math/vector3.cpp'], LIBPATH=['/usr/local/lib/gtest'])
